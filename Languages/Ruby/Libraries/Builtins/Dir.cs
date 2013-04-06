@@ -212,6 +212,9 @@ namespace IronRuby.Builtins {
                 throw RubyExceptions.CreateEEXIST(strDir);
             }
 
+            if (String.IsNullOrEmpty(strDir)) {
+                throw RubyExceptions.CreateENOENT("path is null or empty");
+            }
             string containingDir = platform.GetDirectoryName(strDir);
             if (!String.IsNullOrEmpty(containingDir) && !platform.DirectoryExists(containingDir)) {
                 throw RubyExceptions.CreateENOENT("No such file or directory - {0}", containingDir);
